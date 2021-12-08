@@ -38,7 +38,7 @@ def generate_targets(subject):
 
     # generate anchor
     surface_points, _ = trimesh.sample.sample_surface(mesh, 100000)
-    kmeans = KMeans(n_clusters=point_num, random_state=0).fit(surface_points)
+    kmeans = KMeans(n_clusters=int(point_num), random_state=0).fit(surface_points)
     key_points = kmeans.cluster_centers_
 
     np.savez(out_file, points=sample_points, df=distances, neighbors=neighbors)

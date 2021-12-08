@@ -20,10 +20,18 @@ conda activate AnchorUDF
 
 ### Testing repo
 ```
+#git clone --recoursive git@github.com:osmr/AnchorUDF.git
+
 pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt -f https://download.pytorch.org/whl/cu113/torch_stable.html
-git submodule add https://github.com/ThibaultGROUEIX/ChamferDistancePytorch
+#git submodule add https://github.com/ThibaultGROUEIX/ChamferDistancePytorch
+
 python -m apps.eval --results_path=../AnchorUDF_data/results --name=a1 --dataroot=../AnchorUDF_data/data/data_new_1024 --test_folder_path=290-1 --load_netG_checkpoint_path=../AnchorUDF_data/checkpoints/anchor_udf_df3d/netG_epoch_59.zip --anchor --num_steps=5 --filter_val=0.007
+python -m apps.eval_hd --results_path=../AnchorUDF_data/results --name=a2 --dataroot=../AnchorUDF_data/data/data_new_1024 --test_folder_path=290-1 --load_netMR_checkpoint_path=../AnchorUDF_data/checkpoints/anchor_udf_hd_df3d/netMR_epoch_14.zip --anchor --merge_layer=2 --joint_train --loadSize=1024 --num_steps=5 --filter_val=0.007
+python -m apps.eval_all --results_path=../AnchorUDF_data/results --dataroot=../AnchorUDF_data/data/data_new_1024 --load_netG_checkpoint_path=../AnchorUDF_data/checkpoints/anchor_udf_df3d/netG_epoch_59.zip --anchor --num_steps=5 --filter_val=0.007
+python -m apps.compute_errors --results_path=../AnchorUDF_data/results --root_path=../AnchorUDF_data/data/data_new_222
+
+
 ```
 
 ### Dataset
