@@ -18,6 +18,14 @@ conda env create -f env_anchor_udf.yml
 conda activate AnchorUDF
 ```
 
+### Testing repo
+```
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt -f https://download.pytorch.org/whl/cu113/torch_stable.html
+git submodule add https://github.com/ThibaultGROUEIX/ChamferDistancePytorch
+python -m apps.eval --results_path=../AnchorUDF_data/results --name=a1 --dataroot=../AnchorUDF_data/data/data_new_1024 --test_folder_path=290-1 --load_netG_checkpoint_path=../AnchorUDF_data/checkpoints/anchor_udf_df3d/netG_epoch_59.zip --anchor --num_steps=5 --filter_val=0.007
+```
+
 ### Dataset
 
 - [Deep Fashion3D](https://github.com/kv2000/deepFashion3D)
